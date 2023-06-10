@@ -1,55 +1,60 @@
+/*
+В классе Main были созданы дирректории и файлы с помощью класса File, а также была произведена запись в файл
+ */
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
 public class Main {
     static StringBuilder stringBuilder = new StringBuilder();
+
     public static void main(String[] args) {
         File dirGames = new File("I://Games");
 
 
         File dirSrc = new File("I://Games//src");
-        if (dirSrc.mkdir()){
+        if (dirSrc.mkdir()) {
             infoDirectory();
         }
 
         File dirRes = new File("I://Games//res");
-        if (dirRes.mkdir()){
+        if (dirRes.mkdir()) {
             infoDirectory();
         }
 
         File dirSavegames = new File("I://Games//savegames");
-        if (dirSavegames.mkdir()){
+        if (dirSavegames.mkdir()) {
             infoDirectory();
         }
 
         File dirTemp = new File("I://Games//temp");
-        if (dirTemp.mkdir()){
+        if (dirTemp.mkdir()) {
             infoDirectory();
         }
 
         File dirSrcMain = new File("I://Games//src//main");
-        if (dirSrcMain.mkdir()){
+        if (dirSrcMain.mkdir()) {
             infoDirectory();
         }
 
         File dirSrcTest = new File("I://Games//src//test");
-        if (dirSrcTest.mkdir()){
+        if (dirSrcTest.mkdir()) {
             infoDirectory();
         }
 
         File dirResDrawables = new File("I://Games//res//drawables");
-        if (dirResDrawables.mkdir()){
+        if (dirResDrawables.mkdir()) {
             infoDirectory();
         }
 
         File dirResVectors = new File("I://Games//res//vectors");
-        if (dirResVectors.mkdir()){
+        if (dirResVectors.mkdir()) {
             infoDirectory();
         }
 
         File dirResIcons = new File("I://Games//res//icons");
-        if (dirResIcons.mkdir()){
+        if (dirResIcons.mkdir()) {
             infoDirectory();
         }
 
@@ -74,33 +79,31 @@ public class Main {
 
         File dirTempFile = new File("I://Games//temp//temp.txt");
         try {
-            if (dirTempFile.createNewFile()){
+            if (dirTempFile.createNewFile()) {
                 infoFile();
             }
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
 
-        try(FileWriter writer = new FileWriter("I://Games//temp//temp.txt", false))
-        {
+        try (FileWriter writer = new FileWriter("I://Games//temp//temp.txt", false)) {
             writer.write(String.valueOf(stringBuilder));
 
             writer.flush();
-        }
-        catch(IOException ex){
+        } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
 
     }
 
-    public static void infoDirectory(){
+    public static void infoDirectory() {
         System.out.println("Дирректория создана");
         System.out.println();
         stringBuilder.append("Дирректория создана");
         stringBuilder.append("\n");
     }
 
-    public static void infoFile(){
+    public static void infoFile() {
         System.out.println("Файл был создан");
         System.out.println();
         stringBuilder.append("Файл был создан");
