@@ -5,95 +5,68 @@
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
     static StringBuilder stringBuilder = new StringBuilder();
 
+    static List<String> listDirectory = new ArrayList<>();
+
+    static List<String> listFiles = new ArrayList<>();
+
     public static void main(String[] args) {
-        File dirGames = new File("I://Games");
+        listDirectory.add("I://Games//src");
+        listDirectory.add("I://Games//res");
+        listDirectory.add("I://Games//savegames");
+        listDirectory.add("I://Games//temp");
+        listDirectory.add("I://Games//src//main");
+        listDirectory.add("I://Games//src//test");
+        listDirectory.add("I://Games//res//drawables");
+        listDirectory.add("I://Games//res//vectors");
+        listDirectory.add("I://Games//res//icons");
 
-
-        File dirSrc = new File("I://Games//src");
-        if (dirSrc.mkdir()) {
-            infoDirectory();
+        for (String s : listDirectory) {
+            newDirectory(s);
         }
 
-        File dirRes = new File("I://Games//res");
-        if (dirRes.mkdir()) {
-            infoDirectory();
+        listFiles.add("I://Games//src//main//Main.java");
+        listFiles.add("I://Games//src//main//Utils.java");
+        listFiles.add("I://Games//temp//temp.txt");
+
+        for (String s : listFiles) {
+            newFile(s);
         }
 
-        File dirSavegames = new File("I://Games//savegames");
-        if (dirSavegames.mkdir()) {
+        writeFile("I://Games//temp//temp.txt");
+    }
+
+    public static void newDirectory(String path) {
+        File dir = new File(path);
+        if (dir.mkdir()) {
             infoDirectory();
         }
+    }
 
-        File dirTemp = new File("I://Games//temp");
-        if (dirTemp.mkdir()) {
-            infoDirectory();
-        }
-
-        File dirSrcMain = new File("I://Games//src//main");
-        if (dirSrcMain.mkdir()) {
-            infoDirectory();
-        }
-
-        File dirSrcTest = new File("I://Games//src//test");
-        if (dirSrcTest.mkdir()) {
-            infoDirectory();
-        }
-
-        File dirResDrawables = new File("I://Games//res//drawables");
-        if (dirResDrawables.mkdir()) {
-            infoDirectory();
-        }
-
-        File dirResVectors = new File("I://Games//res//vectors");
-        if (dirResVectors.mkdir()) {
-            infoDirectory();
-        }
-
-        File dirResIcons = new File("I://Games//res//icons");
-        if (dirResIcons.mkdir()) {
-            infoDirectory();
-        }
-
-        File dirSrcMainFile = new File("I://Games//src//main//Main.java");
+    public static void newFile(String path) {
+        File File = new File(path);
         try {
-            if (dirSrcMainFile.createNewFile()) {
+            if (File.createNewFile()) {
                 infoFile();
             }
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
+    }
 
-
-        File dirSrcMainUtilsFile = new File("I://Games//src//main//Utils.java");
-        try {
-            if (dirSrcMainUtilsFile.createNewFile()) {
-                infoFile();
-            }
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-
-        File dirTempFile = new File("I://Games//temp//temp.txt");
-        try {
-            if (dirTempFile.createNewFile()) {
-                infoFile();
-            }
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-
-        try (FileWriter writer = new FileWriter("I://Games//temp//temp.txt", false)) {
+    public static void writeFile(String path) {
+        try (FileWriter writer = new FileWriter(path, false)) {
             writer.write(String.valueOf(stringBuilder));
 
             writer.flush();
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
-
     }
 
     public static void infoDirectory() {
